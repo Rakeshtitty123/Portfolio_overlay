@@ -1,0 +1,469 @@
+*{
+    padding:0px;
+    margin:0px;
+    /*By default, the width and height of an element is calculated like this:
+
+width + padding + border = actual width of an element
+height + padding + border = actual height of an element
+
+This means: When you set the width/height of an element, the element often appears bigger than you have set 
+(because the element's border and padding are added to the element's specified width/height).
+The box-sizing property allows us to include the padding and border in an element's total width and height.
+
+If you set box-sizing: border-box; on an element, padding and border are included in the width and height:
+    */
+    box-sizing:border-box;
+}
+html{
+    font-size:15px;
+    font-family: 'Montserrat', sans-serif;
+}
+a{
+    text-decoration:none;
+}
+/*This is the default syling that we have given for every image to have height:100% and width:100% and fit cover*/
+img{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+}
+.container{
+    /*For the minimum height*/
+    min-height: 100vh;
+    /*width is set to be 100% so thaat thw given div will taken whole of the width*/
+    width:100%;
+    /*
+    The flex-basis CSS property sets the initial main size of a flex item. It sets the size of the content box 
+    unless otherwise set with box-sizing .It makes the element more flexible
+    */
+    display:flex;
+    align-items:center;
+    /*It aligns the flex contents at the centre*/
+    justify-content:center;
+}
+/*This is the default css properties that we are going to use in our website most of the times so have given te default properties 
+for each section*/
+#hero{
+    background-image:url(hero-bg.png);
+    background-size:cover;
+    background-position:top center;
+    position:relative;
+    width:100%;
+    z-index:1;
+}
+/*This is the overlay that we have given after the hero sectiom so that we can style our own section from the deafult values
+*/
+#hero:after{
+    content:' ';
+    position:absolute;
+    left:0px;
+    top:0px;
+     height:100%;
+     width:100%;
+     background-color:black;
+     opacity:0.7;
+     /*since we set the content as null when we hover the anchor tags then it will not be a button anymore 
+     inorder to reatian the properties we set the z-index as -1 so that the anchor and given high priority for the */
+     z-index:-1;
+
+}
+#hero .hero{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 50px;
+    justify-content:flex-start;
+}
+#hero h1{
+       display:block;
+       width:fit-content;
+      /* font-size:50px;*/
+       /*In intial state we put the transition as transparent so as to revel the text with the animation*/
+       color:transparent;
+       font-size:3rem;
+       position:relative;
+       animation:text-reveal .5s ease forwards;
+       animation-delay:0.5s;
+}
+#hero h1:nth-child(1){
+    animation-delay:1.0s;
+}
+#hero h1:nth-child(2){
+    animation-delay:2.0s;
+}
+#hero h1:nth-child(3){
+    animation:text-reveal_name 0.5s ease forwards;
+    animation-delay:3.0s;
+}
+#hero h1 span{
+      position:absolute;
+      left:0;
+      top:0;
+      /*Here we put the initial width as 0% as we dont want to see the box suddenly*/
+      width:0;
+      height:100%;
+      background-color:crimson;
+      /*After that here we added the animation effect for box to appear at a delay of 0.2s and for the duration of 1s in forward direction*/
+      animation:overlay 1s ease forwards;
+      animation-delay:0.5s;
+}
+#hero h1:nth-child(1) span{ 
+    animation-delay:.5s;
+}
+#hero h1:nth-child(2) span{
+    animation-delay:1.5s;
+}
+#hero h1:nth-child(3) span{
+    animation-delay:2.5s;
+}
+.cta{
+    display:inline-block;
+    padding:10px 30px;
+    color:white;
+    background-color:transparent;
+    border:2px solid crimson;
+    font-size: 2rem;
+    text-transform:uppercase;
+    letter-spacing:.1rem;
+    margin-top:30px;
+    transition: .3s ease;
+    transition-property: background-color,color;
+   
+}
+/*After hovering button as we have given the class cta we chage the color as white and background-color;as criminsom*/
+.cta:hover{
+      color:white;
+      background-color: crimson;
+}
+/*stling of service section*/
+.brand h1{
+       font-size:3rem;
+       font-weight:bold;
+       text-transform:uppercase;
+       color:white;
+}
+.brand h1 span{
+    color:crimson;
+}
+/*end of service section*/
+#services .services{
+    margin-top:100px;
+    text-align:center;
+   flex-direction: column;
+   max-width:1500px;
+   margin:0 auto;
+   padding:100px 0px;
+}
+/*To make it apply for all classes having section title we just have used class name without any of its parent attribute*/
+.section-title{
+    font-size:4rem;
+    font-weight:300px;
+    color:black;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    letter-spacing: 0.2rem;
+    text-align:center;
+}
+.section-title span{
+     color:crimson;
+}
+p{
+    font-size:1.4rem;
+    margin-top:5px;
+    line-height:2.5rem;
+    font-weight:300;
+    letter-spacing:0.05rem;
+}
+#services .service-bottom {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    /*flex-wrap item is used to wrap multiple lines in a single line*/
+    flex-wrap:wrap;
+    margin-top:50px;
+}
+#services .service-item{
+    /*It will set the width of div so that text comes in that width only*/
+      flex-basis:80%;
+      /*we can use directly the width property insted of this property*/
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      flex-direction:column;
+      padding:30px;
+      background-image:url(img-1\ \(1\).png);
+      background-size:cover;
+      margin:10px 5%;
+      /*If we won't set the position as relative as we cannot see the changes after setting the position as absolute*/
+      position:relative;
+      z-index:1;
+}
+/*To insert some thing after the block we use after selector we can use before selector also for before printing*/
+/*This can be used to apply the style sheet after all basics styles */
+#services .service-item::after{
+       content: '';
+       display:inline-block;
+       border-radius: 10px;
+       position:absolute;
+       left:0;
+       top:0;
+       height:100%;
+       width:100%;
+       background-image:linear-gradient(60deg,#29232c 0%,#485563 100%);
+       opacity:.7;
+       z-index:-1;     
+       
+}
+#services .service-bottom .icon{
+    height:80px;
+    width:80px;
+    margin-bottom:20px;
+}
+#services .service-item h2{
+    font-size:2rem;
+    color:white;
+    margin-bottom:10px;
+    text-transform:uppercase;
+}
+#services .service-item p{
+    color:white;
+    text-align:left;
+    
+}
+#projects .projects{
+    flex-direction:column;
+    max-width:1200px;
+    margin: 0 auto;
+    padding: 100px 0px;
+}
+#projects .projects-header h1{
+    margin-bottom: 50px;
+}
+#projects .all-projects{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content: center;
+}
+#projects .project-item{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:80%;
+    margin:20px auto;
+    flex-direction:column;
+    overflow:hidden;
+    border-radius:10px;
+}
+#projects .project-info{
+        padding:30px;
+        /*sets the width bacground square flex*/
+        flex-basis:50%;
+        height:100%;
+        display:flex;
+        align-items:flex-start;
+        justify-content:center;
+        flex-direction:column;
+        background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+        border-radius: 10px;
+	   color: white;
+}
+#projects .project-info h1{
+    margin-bottom: 10px;
+    font-size:40px;
+}
+#projects .project-info p{
+    color:white;
+}
+#projects .project-img{
+     height:340px;
+     width:960px;
+     overflow:hidden;
+     border-radius:10px;
+     position:relative;
+
+ }
+ #projects .project-img:after{
+    content:'';
+    background-image:black;
+ }
+ /*About Section Styling*/
+#about .about{
+    flex-direction:column-reverse;
+    max-width:1200px;
+    text-align:center;
+    margin:0 auto;
+    padding:100px 20px;
+}
+#about .col-left{
+    width:250px;
+    height:360px;
+}
+#about .col-right{
+    width:100%;
+}
+#about .col-right h2{
+    font-size:1.8rem;
+    font-weight:500px;
+    letter-spacing:.1rem;
+    margin-bottom:10px;
+}
+#about .col-right p{
+    margin-bottom:20px;
+}
+#about .cta{
+    /*If incase our text doesnt appear on screen it may occur due to the text color and div color 
+    If both are white we cant see the text*/
+    color:black;
+    margin-bottom:50px;
+    padding:10px 20px;
+    font-size:2rem;
+}
+#about .col-left .about-img{
+    height:100%;
+    width:100%;
+    position:relative;
+    border:10px solid white;
+}
+#about .col-left .about-img:after{
+         content:'';
+         position:absolute;
+         left:-33px;
+         top:19px;
+         /*To have border upto 98% only of height so that it acn have mice view*/
+         height:98%;
+         width:98%;
+         border:7px solid crimson;
+         z-index:-1;
+}
+ /*End of about section*/
+ /*contact section*/
+ #contact .contact{
+     flex-direction:column;
+     max-width:1200px;
+     margin:0 auto;
+ }
+ #contact .contact-items{
+     width:1100px;
+     
+ }
+ #contact .contact-item{
+     width:80%;
+     padding:20px;
+     /*Inorder to align the items of div in colum we used this flex-direction as column*/
+     flex-direction:column;
+     text-align:center;
+     border-radius:10px;
+     margin:0 auto;
+     margin-bottom:20px;
+     overflow:hidden;
+     object-fit: cover;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     box-shadow:0px 0px 30px 0px #0000002c;
+     transition:.3s ease box-shadow;
+ }
+ #contact .contact-item:hover{
+     box-shadow:0px 0px 10px 0px #0000002c;
+ }
+ #contact .icon{
+      width:80px;
+      margin:0 auto;
+      margin-bottom:5px;
+ }
+ #contact .contact-info h1{
+     font-size:2.0rem;
+     font-weight:500px;
+     margin-bottom:5px;
+ }
+#contact .contact-info h2{
+    font-size:1.3rem;
+    line-height:2rem;
+    font-weight:500px;
+  
+}
+#contact .contact-info:last-child{
+    margin-bottom: 10px;
+}
+/*Foote section*/
+#footer{
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+}
+#footer .footer{
+    min-height:200px;
+    flex-direction:column;
+    padding-top:50px;
+    padding-bottom:10px;
+}
+#footer h2{
+    color:white;
+    font-weight:500px;
+    font-size:1.8rem;
+    letter-spacing:.1rem;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+#footer .social-icon{
+    display: flex;
+    margin-bottom:30px;
+}
+#footer .social-item{
+    height:50px;
+    width:50px;
+    margin:0 auto;
+}
+#footer .social-item img{
+    filter:grayscale(1);
+    transition: 0.3s ease filter;
+}
+#footer .social-item:hover img{
+    filter:grayscale(0);
+}
+#footer p{
+    color:white;
+}
+/*End of footer*/
+@keyframes overlay{
+    50%{
+        width:100%;
+        left:0;
+    }
+    100%{
+        width:0;
+        left:100%;
+    }
+}
+@keyframes text-reveal{
+    100%{
+        color:white;
+    }
+}
+@keyframes text-reveal_name{
+    100%{
+        color:crimson;
+    }
+}
+/*Media Queries*/
+@media only screen and (min-width:768px){
+    cta {
+		font-size: 3rem;
+		padding: 20px 60px;
+	}
+	h1.section-title {
+		font-size: 3rem;
+	}
+
+	/* Hero */
+	#hero h1 {
+		font-size: 3rem;
+	}
+	/* End Hero */
+
+	/* Services Section */
+	#services .service-bottom .service-item {
+		flex-basis: 45%;
+        /*relative to the block*/
+		margin: 2.5%;
+	}
+	/* End Services Section */
+}
